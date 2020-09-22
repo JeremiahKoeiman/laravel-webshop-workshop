@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/categories', 'CategoryController');
+Route::resource('/categories', 'App\Http\Controllers\CategoryController');
 
 Auth::routes();
 
