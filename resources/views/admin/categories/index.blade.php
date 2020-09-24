@@ -4,6 +4,12 @@
 
     <h1 class="mt-5">Categories</h1>
 
+    @if(session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -20,6 +26,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Category</th>
+            <th scope="col">Category details</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +34,7 @@
             <tr>
                 <td scope="row">{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
+                <td><a href="{{ route('categories.show', ['category' => $category->id]) }}">Details</a></td>
             </tr>
         @endforeach
         </tbody>

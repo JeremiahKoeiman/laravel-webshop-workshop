@@ -3,6 +3,16 @@
 @section('content')
     <h1 class="mt-5">Categories</h1>
 
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">
