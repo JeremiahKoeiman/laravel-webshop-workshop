@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -87,13 +88,24 @@ class CategoryController extends Controller
     }
 
     /**
+     * @param Category $category
+     * @return View
+     */
+    public function delete(Category $category)
+    {
+        return view('admin.categories.delete', compact('category'));
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Category $category
+     * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')->with('message', 'Categorie verwijderd');
     }
 }
