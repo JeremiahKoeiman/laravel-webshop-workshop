@@ -28,6 +28,7 @@
             <th scope="col">Category</th>
             <th scope="col">Category details</th>
             <th scope="col">Edit Category</th>
+            <th scope="col">Delete Category</th>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@
                 <td>{{ $category->name }}</td>
                 <td><a href="{{ route('categories.show', ['category' => $category->id]) }}">Details</a></td>
                 <td><a href="{{ route('categories.edit', ['category' => $category->id]) }}">Edit</a></td>
+                <td><a href="{{ route('categories.delete', ['category' => $category->id]) }}">Delete</a></td>
             </tr>
         @endforeach
         </tbody>
