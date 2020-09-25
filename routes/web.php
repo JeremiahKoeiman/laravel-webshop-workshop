@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::group(['middleware' => ['role:customer|sales|admin']], function () {
+Route::group(['middleware' => ['role:sales|admin']], function () {
     Route::get('categories/{category}/delete', 'App\Http\Controllers\CategoryController@delete')
         ->name('categories.delete');
     Route::resource('/categories', 'App\Http\Controllers\CategoryController');
@@ -25,4 +25,4 @@ Route::group(['middleware' => ['role:customer|sales|admin']], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('start');
