@@ -49,19 +49,21 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"
-                    >
-                        Admin
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="{{ route('categories.index') }}" class="dropdown-item">Category Admin</a>
-                        <a href="#" class="dropdown-item">Product Admin</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Something else here</a>
-                    </div>
-                </li>
+                @hasanyrole('sales|admin')
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"
+                        >
+                            Admin
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{{ route('categories.index') }}" class="dropdown-item">Category Admin</a>
+                            <a href="#" class="dropdown-item">Product Admin</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Something else here</a>
+                        </div>
+                    </li>
+                @endhasanyrole
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
