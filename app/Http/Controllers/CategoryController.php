@@ -12,6 +12,22 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * Set permissions on methods creation
+     */
+    public function __construct()
+    {
+        // Must be authenticated to use the CategoryController
+        $this->middleware('auth');
+        // If the user has the 'create category' permission, you can only use the 'create' and 'store' method
+        $this->middleware('permission:create category', ['only' => ['create', 'store']]);
+        // If the user has the 'edit category' permission, you can only use the 'edit' and 'update' method
+        $this->middleware('permission:edit category', ['only' => ['edit', 'update']]);
+        // If the user has the 'delete category' permission, you can only use the 'delete' and 'destroy' method
+        $this->middleware('permission:delete category', ['only' => ['delete', 'destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
