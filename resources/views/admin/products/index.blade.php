@@ -41,8 +41,8 @@
                 <td>{{ $product->category->name }}</td>
                 <td>€ {{ $product->get_latest_price->price }}</td>
                 <td><a href="{{ route('products.show', ['product' => $product->id]) }}">Details</a></td>
-                {{--<td><a href="{{ route('products.edit', ['category' => $product->id]) }}">Edit</a></td>
-                <td><a href="{{ route('products.delete', ['category' => $product->id]) }}">Delete</a></td>--}}
+                <td><a href="{{ route('products.edit', ['product' => $product->id]) }}">Edit</a></td>
+                <td><a href="{{ route('products.delete', ['product' => $product->id]) }}">Delete</a></td>
             </tr>
         @endforeach
         </tbody>

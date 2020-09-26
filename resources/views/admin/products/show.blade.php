@@ -27,7 +27,7 @@
             <p class="card-text">Category: {{ $product->category->name }}</p>
             <h3 class="card-text text-primary font-weight-bold">Current price: € {{ $product->get_latest_price->price }}</h3>
             <br>
-            <div style="background-color:#888888; ">
+           {{-- <div style="background-color:#888888; ">
                 <h1 class="text-primary">Previous prices in card style</h1>
                 <div class="card">
                     <h5 class="card-header">Previous prices:</h5>
@@ -40,7 +40,7 @@
                     </ul>
                 </div>
             </div>
-
+--}}
             <br>
             <br>
 
