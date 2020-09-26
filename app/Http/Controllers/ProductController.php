@@ -107,14 +107,20 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('message', 'Product updated');
     }
 
+    public function delete(Product $product)
+    {
+        return view('admin.products.delete', compact('product'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with('message', 'Product deleted');
     }
 }
