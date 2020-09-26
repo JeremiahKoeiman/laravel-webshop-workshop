@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')
-                ->on('category')
+                ->on('categories')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->timestamps();
