@@ -58,12 +58,15 @@
                         </a>
                         <div class="dropdown-menu">
                             <a href="{{ route('categories.index') }}" class="dropdown-item">Category Admin</a>
-                            <a href="#" class="dropdown-item">Product Admin</a>
+                            <a href="{{ route('products.index') }}" class="dropdown-item">Product Admin</a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item">Something else here</a>
                         </div>
                     </li>
                 @endhasanyrole
+                <li class="nav-item">
+                    <a href="{{ route('products.index') }}" class="nav-link">Product Test</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
