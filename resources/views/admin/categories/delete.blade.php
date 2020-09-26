@@ -27,7 +27,7 @@
         </ul>
     </nav>
 
-    <form method="POST" action="{{ route('categories.update', ['category' => $category->id]) }}">
+    <form method="POST" action="{{ route('categories.destroy', ['category' => $category->id]) }}">
         @method('DELETE')
         @csrf
 

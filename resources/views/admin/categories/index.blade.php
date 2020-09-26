@@ -10,6 +10,12 @@
         </div>
     @endif
 
+    @if(session('wrong'))
+        <div class="alert alert-danger">
+            {{ session('wrong') }}
+        </div>
+    @endif
+
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">

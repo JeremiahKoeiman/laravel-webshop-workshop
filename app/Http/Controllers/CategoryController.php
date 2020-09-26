@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Throwable;
 
 class CategoryController extends Controller
 {
@@ -117,11 +118,16 @@ class CategoryController extends Controller
      *
      * @param \App\Models\Category $category
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        try {
+            $category->delete();
+        } catch (Throwable $e) {
+            report($e);
+            return redirect()->route('categories.index')->with('wrong', 'Category is not yet empty. There aren\'t any products in the category allowed anymore.');
+        }
         return redirect()->route('categories.index')->with('message', 'Categorie verwijderd');
     }
 }
