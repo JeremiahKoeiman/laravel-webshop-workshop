@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 class="mt-5">Categories</h1>
+    <h1 class="mt-5">Products</h1>
 
     @if(session('message'))
         <div class="alert alert-success">
@@ -13,10 +13,10 @@
     <nav class="nav">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a href="{{ route('categories.index') }}" class="nav-link active">Index</a>
+                <a href="{{ route('products.index') }}" class="nav-link active">Index</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('categories.create') }}" class="nav-link">Create</a>
+                <a href="{{ route('products.create') }}" class="nav-link">Create</a>
             </li>
         </ul>
     </nav>
@@ -25,20 +25,24 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Product</th>
             <th scope="col">Category</th>
-            <th scope="col">Category details</th>
-            <th scope="col">Edit Category</th>
-            <th scope="col">Delete Category</th>
+            <th scope="col">Current price</th>
+            <th scope="col">Product details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($categories as $category)
+        @foreach($products as $product)
             <tr>
-                <td scope="row">{{ $category->id }}</td>
-                <td>{{ $category->name }}</td>
-                <td><a href="{{ route('categories.show', ['category' => $category->id]) }}">Details</a></td>
-                <td><a href="{{ route('categories.edit', ['category' => $category->id]) }}">Edit</a></td>
-                <td><a href="{{ route('categories.delete', ['category' => $category->id]) }}">Delete</a></td>
+                <td scope="row">{{ $product->id }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->category->name }}</td>
+                <td>€ {{ $product->get_latest_price->price }}</td>
+                <td><a href="{{ route('products.show', ['product' => $product->id]) }}">Details</a></td>
+                {{--<td><a href="{{ route('products.edit', ['category' => $product->id]) }}">Edit</a></td>
+                <td><a href="{{ route('products.delete', ['category' => $product->id]) }}">Delete</a></td>--}}
             </tr>
         @endforeach
         </tbody>
