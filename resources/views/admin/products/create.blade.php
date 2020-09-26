@@ -30,26 +30,30 @@
         <div class="form-group">
             <label for="name">Product name</label>
             <input type="text" name="name" class="form-control" id="name"
-                   aria-describedby="productnameHelp" placeholder="Enter category name">
+                   aria-describedby="productnameHelp" value="{{ old('name') }}" placeholder="Enter product name">
         </div>
 
         <div class="form-group">
             <label for="description">Product description</label>
             <textarea name="description" class="form-control" id="description"
-                      rows="3" placeholder="Enter product description"></textarea>
+                      rows="3" placeholder="Enter product description">{{ old('description') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="price">Product price</label>
             <input type="text" name="price" class="form-control" id="price"
-                   aria-describedby="productpriceHelp" placeholder="Enter product price">
+                   aria-describedby="productpriceHelp" value="{{ old('price') }}" placeholder="Enter product price">
         </div>
 
         <div class="form-group">
             <label for="category_id">Select category</label>
             <select name="category_id" id="category_id" class="form-control">
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}"
+                        @if(old('category_id') == $category->id)
+                            selected
+                        @endif
+                    >{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
