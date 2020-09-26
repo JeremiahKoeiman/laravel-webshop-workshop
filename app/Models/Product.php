@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->hasMany(Price::class);
     }
+
+    public function get_latest_price()
+    {
+        return $this->hasOne('App\Models\Price')->orderBy('effdate', 'desc');
+    }
 }
