@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('get_latest_price')->get();
+        $products = Product::with('get_latest_price')->paginate(25);
 
         return view('admin.products.index', compact('products'));
     }
