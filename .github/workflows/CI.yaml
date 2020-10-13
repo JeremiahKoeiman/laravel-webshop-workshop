@@ -1,7 +1,7 @@
 name: Run, build and deploy Laravel project to Vercel
 on: [push]
 jobs:
-  laravel-build-and-deploy:
+  laravel-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,10 +35,4 @@ jobs:
 
       - name: Seed database
         run: php artisan db:seed
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v19.0.1+3
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 

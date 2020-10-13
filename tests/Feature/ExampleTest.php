@@ -1,21 +1,24 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+use App\Models\User;
+use function PHPUnit\Framework\assertNotEmpty;
 
-        $response->assertStatus(200);
-    }
-}
+uses(RefreshDatabase::class);
+
+it('has a welcome page', function () {
+    $response = $this->get('/');
+    $response->assertStatus(200);
+})->skip();
+
+it('validate emails', function ($email) {
+    assertNotEmpty($email);
+})->with('emails');
+
+it('has users', function () {
+    beforeEach(fn() => User::factory()->create());
+    $this->assertDatabaseHas('users', ['id' => 1]);
+});
