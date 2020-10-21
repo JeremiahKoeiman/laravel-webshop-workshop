@@ -2,19 +2,14 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
-use function PHPUnit\Framework\assertNotEmpty;
+/*use App\Models\User;
 
-it('has a welcome page', function () {
-    $response = $this->get('/');
-    $response->assertStatus(200);
-})->skip();
-
-it('validate emails', function ($email) {
-    assertNotEmpty($email);
-})->with('emails');
+beforeEach(fn () => User::factory()->create());
 
 it('has users', function () {
-    User::factory()->create();
     $this->assertDatabaseHas('users', ['id' => 1]);
 });
+
+it('has users 2', function () {
+    $this->assertDatabaseHas('users', ['id' => 2]);
+});*/
