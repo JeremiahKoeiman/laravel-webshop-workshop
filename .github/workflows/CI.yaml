@@ -8,12 +8,6 @@ jobs:
     steps:
        - uses: actions/checkout@v2
 
-       - name: Cache dependencies
-         uses: actions/cache@v1
-           with:
-           path: ~/.composer/cache/files
-           key: dependencies-composer-${{ hashFiles('composer.json') }}
-
        - name: Copy ENV Laravel Configuration for CI
           run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
