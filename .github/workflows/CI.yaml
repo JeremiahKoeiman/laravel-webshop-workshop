@@ -1,10 +1,40 @@
 name: Build Laravel project
-on: ["push", "pull_request"]
+on: [push]
 jobs:
   laravel-and-deploy:
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v2
+
+       - name: Cache dependencies
+           uses: actions/cache@v1
+           with:
+             path: ~/.composer/cache/files
+             key: dependencies-composer-${{ hashFiles('composer.json') }}
+
+       - name: Copy ENV Laravel Configuration for CI
+         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
+       - name: Install Dependencies (PHP vendors)
+         run: composer install --prefer-dist --no-interaction --no-suggest
+
+       - name: Generate key
+           run: php artisan key:generate
+
+       - name: Install NPM Packages
+         run: npm install
+
+       - name: Compile assets
+         run: npm run production
+
+       - name: Create DB and schemas
+         run: |
+           mkdir -p database
+           touch database/database.sql
+           php artisan migrate
+
+       - name: Seed database
+         run: php artisan db:seed
 
        - name: Coveralls
           uses: coverallsapp/github-action@v1.1.2
