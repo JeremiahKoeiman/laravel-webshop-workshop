@@ -7,49 +7,49 @@ jobs:
   laravel-and-deploy:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-       - name: Setup PHP
-           uses: shivammathur/setup-php@v2
-           with:
-             php-version: 7.4
-             tools: composer:v2
-             coverage: none
+      - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: 7.4
+            tools: composer:v2
+            coverage: none
 
-       - name: Cache dependencies
-         uses: actions/cache@v1
-           with:
-             path: ~/.composer/cache/files
-             key: dependencies-composer-${{ hashFiles('composer.json') }}
+      - name: Cache dependencies
+        uses: actions/cache@v1
+          with:
+            path: ~/.composer/cache/files
+            key: dependencies-composer-${{ hashFiles('composer.json') }}
 
-       - name: Copy ENV Laravel Configuration for CI
+      - name: Copy ENV Laravel Configuration for CI
           run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
-       - name: Install Dependencies (PHP vendors)
+      - name: Install Dependencies (PHP vendors)
           run: composer install --prefer-dist --no-interaction --no-suggest
 
-       - name: Generate key
-           run: php artisan key:generate
+      - name: Generate key
+          run: php artisan key:generate
 
-       - name: Install NPM Packages
+      - name: Install NPM Packages
           run: npm install
 
-       - name: Compile assets
+      - name: Compile assets
           run: npm run production
 
-       - name: Create DB and schemas
+      - name: Create DB and schemas
           run: |
-             mkdir -p database
-             touch database/database.sql
-             php artisan migrate
+            mkdir -p database
+            touch database/database.sql
+            php artisan migrate
 
-       - name: Seed database
+      - name: Seed database
           run: php artisan db:seed
 
-       - name: Run tests
+      - name: Run tests
           run: .\vendor\bin\pest
 
-       - name: Coveralls
+      - name: Coveralls
           uses: coverallsapp/github-action@v1.1.2
           env:
             COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
