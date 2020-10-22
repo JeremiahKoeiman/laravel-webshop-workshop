@@ -38,17 +38,10 @@ jobs:
         run: npm run production
 
       - name: Create DB and schemas
-<<<<<<< HEAD
-          run: |
-            mkdir -p database
-            touch database/workshop.sql
-            php artisan migrate
-=======
         run: |
           mkdir -p database
           touch database/database.sql
           php artisan migrate
->>>>>>> master
 
       - name: Seed database
         run: php artisan db:seed
