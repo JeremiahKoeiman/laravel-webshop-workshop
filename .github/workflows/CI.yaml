@@ -3,10 +3,24 @@ name: Build Laravel project
 on: push
 
 jobs:
+
   laravel-and-deploy:
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v2
+
+       - name: Setup PHP
+           uses: shivammathur/setup-php@v2
+           with:
+             php-version: 7.4
+             tools: composer:v2
+             coverage: none
+
+       - name: Cache dependencies
+         uses: actions/cache@v1
+           with:
+             path: ~/.composer/cache/files
+             key: dependencies-composer-${{ hashFiles('composer.json') }}
 
        - name: Copy ENV Laravel Configuration for CI
           run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
