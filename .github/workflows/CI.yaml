@@ -1,5 +1,7 @@
 name: Build Laravel project
-on: [push]
+
+on: push
+
 jobs:
   laravel-and-deploy:
     runs-on: ubuntu-latest
@@ -36,8 +38,10 @@ jobs:
        - name: Seed database
          run: php artisan db:seed
 
+       - name: Run tests
+         run: .\vendor\bin\pest
+
        - name: Coveralls
           uses: coverallsapp/github-action@v1.1.2
           env:
             COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-
