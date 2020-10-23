@@ -47,7 +47,7 @@ jobs:
         run: php artisan db:seed
 
       - name: Run tests
-        run: .\vendor\bin\pest
+        run: .\vendor\bin\pest --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2

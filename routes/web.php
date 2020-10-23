@@ -21,11 +21,11 @@ Route::group(['middleware' => ['role:sales|admin']], function () {
     Route::get('categories/{category}/delete', 'App\Http\Controllers\CategoryController@delete')
         ->name('categories.delete');
     Route::resource('/categories', 'App\Http\Controllers\CategoryController');
-});
 
-Route::get('products/{product}/delete', 'App\Http\Controllers\ProductController@delete')
-    ->name('products.delete');
-Route::resource('/products', 'App\Http\Controllers\ProductController');
+    Route::get('products/{product}/delete', 'App\Http\Controllers\ProductController@delete')
+        ->name('products.delete');
+    Route::resource('/products', 'App\Http\Controllers\ProductController');
+});
 
 Auth::routes();
 

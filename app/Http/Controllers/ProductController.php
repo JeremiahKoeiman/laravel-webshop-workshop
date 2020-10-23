@@ -13,6 +13,22 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+     * Set permissions on methods creation
+     */
+    public function __construct()
+    {
+        // Must be authenticated to use the CategoryController
+        $this->middleware('auth');
+        // If the user has the 'create product' permission, you can only use the 'create' and 'store' method
+        $this->middleware('permission:create product', ['only' => ['create', 'store']]);
+        // If the user has the 'edit product' permission, you can only use the 'edit' and 'update' method
+        $this->middleware('permission:edit product', ['only' => ['edit', 'update']]);
+        // If the user has the 'delete product' permission, you can only use the 'delete' and 'destroy' method
+        $this->middleware('permission:delete product', ['only' => ['delete', 'destroy']]);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
