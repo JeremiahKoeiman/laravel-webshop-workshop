@@ -54,7 +54,6 @@ jobs:
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
-      - run: php artisan migrate
       - run: ./vendor/bin/pest --coverage
 
       - name: Coveralls
