@@ -31,20 +31,12 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
 
-      - name: Install NPM Packages
-        run: npm install
-
-      - name: Compile assets
-        run: npm run production
-
-      - name: Create DB and schemas
-        run: |
-          mkdir -p database
-          touch database/database.sql
-          php artisan migrate
-
-      - name: Seed database
-        run: php artisan db:seed
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm run production
 
       - name: Run tests
         run: .\vendor\bin\pest --coverage
