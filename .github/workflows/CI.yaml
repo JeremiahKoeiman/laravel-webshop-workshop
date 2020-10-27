@@ -54,7 +54,7 @@ jobs:
           CACHE_DRIVER: array
           SESSION_DRIVER: array
           QUEUE_DRIVER: sync
-      - run: ./vendor/bin/pest --coverage
+        run: ./vendor/bin/pest --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
