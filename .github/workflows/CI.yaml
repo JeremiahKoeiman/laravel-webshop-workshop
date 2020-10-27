@@ -38,6 +38,9 @@ jobs:
       - run: npm install
       - run: npm run production
 
+      - name: Run migration
+        run: php artisan migrate
+
       - name: Run tests
         run: ./vendor/bin/pest --coverage
 
